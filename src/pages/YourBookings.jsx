@@ -8,23 +8,25 @@ import appwriteService2 from "../appwrite/count.js";
 function YourBookings() {
   const [bookings, setBookings] = useState([]);
   // const [num, setNum] = useState(1);
-  const user = useSelector((state) => state.auth.userData);
-  const userId = user.$id;
+
   const id = useId();
   let num = 0;
 
-  const getBooking = async () => {
-    const data = await appwriteService1.getBookings(userId);
-    setBookings(data.documents);
-  };
-
-  useEffect(() => {
+  const getUser = async () => {
+    const user = await authService.getCurrentUser();
+    console.log(user)
+    const userId = user.$id;
     appwriteService1.getBookings(userId).then((t) => {
       if (t) {
         setBookings(t.documents);
       }
     });
-  }, []);
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+  
 
   if (bookings.length == 0) {
     return (
