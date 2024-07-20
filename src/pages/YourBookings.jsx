@@ -14,7 +14,6 @@ function YourBookings() {
 
   const getUser = async () => {
     const user = await authService.getCurrentUser();
-    console.log(user)
     const userId = user.$id;
     appwriteService1.getBookings(userId).then((t) => {
       if (t) {
