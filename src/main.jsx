@@ -10,7 +10,6 @@ import BookingPage from "./pages/BookingPage.jsx";
 import Villas from "./pages/Villas.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import YourBookings from "./pages/YourBookings.jsx";
-import { NextUIProvider } from "@nextui-org/react";
 import CheckAvailability from "./pages/CheckAvailability.jsx";
 
 const router = createBrowserRouter([
