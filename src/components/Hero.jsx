@@ -14,7 +14,7 @@ function Hero() {
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="w-full">
-          <h1 className="mb-5 text-5xl font-bold">Enjoy the peace & seclusion of our exclusive spa resort location.</h1>
+          <h1 className="mb-5 text-2xl md:text-4xl italic font-bold">Enjoy the peace & seclusion of our exclusive spa resort location.</h1>
           <p className="mb-5">
           Indulge in one of our special offers, which range from a supper at our Michelin-starred Restaurant Vinkeles to the opportunity to learn about the benefits of organizing the perfect romantic weekend.
           </p>

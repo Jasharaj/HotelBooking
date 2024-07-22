@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Card({ src, name, description, price }) {
   const navigate = useNavigate();
@@ -8,28 +8,8 @@ function Card({ src, name, description, price }) {
   }
 
   return (
-    // <div className="w-full p-3 text-black" >
-    //   <div className="card lg:card-side bg-white rounded-none">
-    //     <figure className="w-[500px] h-[500px]">
-    //       <img
-    //         src={src}
-    //         alt="Album"
-    //       />
-    //     </figure>
-    //     <div className="card-body">
-    //       <h1 className="card-title">{name}</h1>
-    //       <h3>{description}</h3>
-    //       <div>Price per Night: ₹{price}</div>
-    //       <div className="card-actions justify-end">
-    //         <button className="btn btn-primary" onClick={()=>navigate("/make-a-reservation")}>Book Now</button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
 
-    //
-
-    <div className="card bg-black w-96 shadow-xl rounded-none hover:top-2 hover:translate-y-2 duration-200">
+    <div className="card text-black dark:text-white bg-white dark:bg-black w-96 shadow-xl rounded-md hover:top-2 hover:translate-y-2 duration-200">
       <figure>
         <img
           src={src}

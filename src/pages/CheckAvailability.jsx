@@ -1,28 +1,24 @@
-import React, { useCallback, useId, useState } from "react";
+import React, { useId, useState } from "react";
 import { useForm } from "react-hook-form";
-import appwriteService1 from "../appwrite/config.js";
 import appwriteService2 from "../appwrite/count.js";
-import authService from "../appwrite/auth.js";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { addDays, format } from "date-fns";
+import { Button, Input, Loadingxs, Select } from "../components/index.js";
 
-import { Button, Counter, Input, Select } from "../components/index.js";
-// import { useNavigate, useDispatch } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import Loadingxs from "../Loading";
-import { v4 as uuidv4 } from "uuid";
-import { useNavigate } from "react-router-dom";
 
 function CheckAvailability() {
   const { register, handleSubmit } = useForm();
   const [startdate, setStartDate] = useState(null);
   const [enddate, setEndDate] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const id = useId();
   const [msg, setMsg] = useState("Check Availability");
-  const navigate = useNavigate();
 
   const submit = async (d) => {
+    setMsg("Please Wait...")
+    setLoading(true)
     const stdate = format(startdate, "dd/MM/yyyy");
     const eddate = format(enddate, "dd/MM/yyyy");
     const s = stdate.slice(0, 2);
@@ -32,8 +28,10 @@ function CheckAvailability() {
     let check = 1;
     if (m2 > m) { //For two month query
       for (let i = s; i <= "31"; i++) {
-        const slot = await appwriteService2.getSlots(d.name, i + m);
-        console.log(i+m)
+        let i2 = "0" + i
+        let i3 = i2.slice(-2)
+        const slot = await appwriteService2.getSlots(d.name, i3 + m);
+        
         if (slot.total == 0) {
           //If the date is not present
           check = 0;
@@ -47,10 +45,10 @@ function CheckAvailability() {
       }
 
       for (let i = "01"; i <= e; i++) {
-        let i2 = "0"+i
+        let i2 = "0" + i
         let i3 = i2.slice(-2)
         const slot = await appwriteService2.getSlots(d.name, i3 + m2);
-        console.log(i3+m2)
+    
         if (slot.total == 0) {
           //If the date is not present
           check = 0;
@@ -62,7 +60,9 @@ function CheckAvailability() {
       }
     } else {
       for (let i = s; i <= e; i++) {
-        const slot = await appwriteService2.getSlots(d.name, i + m);
+        let i2 = "0" + i
+        let i3 = i2.slice(-2)
+        const slot = await appwriteService2.getSlots(d.name, i3 + m);
         if (slot.total == 0) {
           //If the date is not present
           check = 0;
@@ -79,15 +79,18 @@ function CheckAvailability() {
     } else {
       setMsg("⚠️ Not Available");
     }
+    setLoading(false)
   };
 
   return (
     <div className="w-full p-3">
       <form
         onSubmit={handleSubmit(submit)}
-        className="flex-col justify-center content-center h-[90vh] bg-gray-700"
+        className="flex-col justify-center content-center h-[90vh] bg-gray-100 dark:bg-gray-800"
       >
-        <div className="text-center text-3xl italic text-white">{msg}</div>
+        <div className="text-center text-1xl md:text-3xl italic text-black dark:text-white">{msg}</div>
+        <div className="text-center text-1xl md:text-3xl text-black dark:text-white">⚠️ Available for Rourkela, Bhubaneswar & Puri upto 3rd August</div>
+
         <Select
           options={[
             "Mayfair Bhubaneswar",
@@ -112,7 +115,7 @@ function CheckAvailability() {
         <Input
           label="Guests(Atleast 1): "
           defaultValue="0"
-          text="text-white"
+          text="text-black"
           {...register("guests", {
             required: true,
             validate: (value) => value > 0 || "The number must be positive",
@@ -133,6 +136,7 @@ function CheckAvailability() {
             onChange={(startdate) => setStartDate(startdate)}
             dateFormat="dd/MM/yyyy"
             minDate={new Date()}
+            required={true}
           />
           <label
             htmlFor={id}
@@ -148,12 +152,19 @@ function CheckAvailability() {
             onChange={(enddate) => setEndDate(enddate)}
             dateFormat="dd/MM/yyyy"
             minDate={startdate}
-            maxDate={addDays(startdate,30)}
+            maxDate={addDays(startdate, 30)}
+            required={true}
           />
         </div>
-        <Button type="submit" className="inline-block mb-2 mt-4 pl-1 w-full">
-          Check
-        </Button>
+        {loading ? (
+          <Button type="submit" className="inline-block mb-2 mt-4 pl-1 w-full" disabled={true}>
+            <Loadingxs />
+          </Button>
+        ) : (
+          <Button type="submit" className="inline-block mb-2 mt-4 pl-1 w-full">
+            Check
+          </Button>
+        )}
       </form>
     </div>
   );

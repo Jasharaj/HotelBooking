@@ -14,6 +14,7 @@ function Home() {
   ];
 
   const [index, setIndex] = useState(0);
+  const [op, setOp] = useState(100)
 
   const background = () => {
     setTimeout(() => {
@@ -25,33 +26,33 @@ function Home() {
     background();
   }, [index]);
 
+
   return (
     <div className="">
-      <div className="relative flex justify-center">
+      <div className="relative flex justify-center opacity-100">
         <img
-          className="w-full transition-opacity duration-1000 ease-in-out opacity-100"
+          className={`w-full transition-opacity duration-1000 opacity-${op}`}
           src={arr[index]}
           alt=""
         />
-        <div className="absolute top-[60px] text-3xl text-black italic">
-          Welcome to Mayfair!
+        <div className="absolute top-[0] text-1xl md:text-4xl text-white italic bg-black w-full opacity-50 text-center p-2 md:p-4">
+          MAYFAIR HOTELS & RESORTS
         </div>
       </div>
 
-      <div className="w-full px-20 py-10 bg-white text-center text-sm md:text-xl lg:text-5xl italic text-gray-600">
+      <div className="w-full px-20 py-10 bg-white dark:bg-black text-center text-sm md:text-3xl italic text-black dark:text-white">
         Come for our fresh, delicious fare, and stay for views & experiences you
         won’t forget. An intimate hideaway with style, inspired by its natural
         environment.
       </div>
-      <div className="flex bg-white gap-3 flex-wrap justify-evenly">
-        <HomePhoto
-          src="https://magnifico-nine.vercel.app/stylishPool.png"
-          text="Stylish Pools"
-        />
-
+      <div className="flex bg-white dark:bg-black gap-3 flex-wrap justify-evenly pb-5">
         <HomePhoto
           src="https://magnifico-nine.vercel.app/amazingView.png"
           text="Amazing Views"
+        />
+         <HomePhoto
+          src="https://magnifico-nine.vercel.app/stylishPool.png"
+          text="Stylish Pools"
         />
         <HomePhoto
           src="https://magnifico-nine.vercel.app/exquisiteFood.png"

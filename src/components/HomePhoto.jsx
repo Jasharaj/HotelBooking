@@ -1,10 +1,17 @@
 import React from 'react'
 
-function HomePhoto({src,text}) {
+function HomePhoto({ src, text }) {
   return (
-    <div className='p-5'>
-      <img src={src} alt="" width='300px' height='300px' className='rounded-md transform transition-transform duration-500 hover:scale-110'/>
-      <div className='text-center mt-10 text-2xl italic text-gray-600'>{text}</div>
+    <div className="card bg-white dark:bg-black w-96">
+      <figure className="px-10 pt-10">
+        <img
+          src={src}
+          alt="Shoes"
+          className="hover:scale-110 duration-500 rounded-sm" />
+      </figure>
+      <div className="card-body items-center text-center">
+        <h2 className="card-title text-black dark:text-white">{text}</h2>
+      </div>
     </div>
   )
 }

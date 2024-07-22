@@ -3,7 +3,7 @@ import { Card } from "../components";
 
 function Villas() {
   return (
-    <div className="bg-gray-800 flex flex-wrap gap-6 justify-center m-5">
+    <div className="bg-gray-100 dark:bg-gray-800 flex flex-wrap gap-6 justify-center m-5">
       <Card
         src="https://res.cloudinary.com/simplotel/image/upload/x_177,y_2,w_719,h_719,r_0,c_crop/q_80,w_455,dpr_1,f_auto,fl_progressive,c_limit/mayfair-hotels-resorts/WhatsApp_Image_2023-08-04_at_18.31.45_u9d8rx"
         name="Mayfair Bhubaneswar"

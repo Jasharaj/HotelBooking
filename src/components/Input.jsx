@@ -11,7 +11,7 @@ const Input = function Input({
     return (
         <div className='w-full'>
             {label && <label
-            className={`block mb-2 text-sm font-medium ${text}`}
+            className={`block mb-2 text-sm font-medium ${text} dark:text-white`}
             htmlFor={id}> 
                 {label}
             </label> //htmlFor, i.e, id -> not necessary to use here, just for improvement

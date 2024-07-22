@@ -1,6 +1,5 @@
 import React, { useId, useState, useEffect } from "react";
 import authService from "../appwrite/auth";
-import { useSelector } from "react-redux";
 import { Button, Loadinglg, Table } from "../components";
 import appwriteService1 from "../appwrite/config.js";
 import appwriteService2 from "../appwrite/count.js";
@@ -10,7 +9,6 @@ function YourBookings() {
   const [msg, setMsg] = useState("❌Cancel ");
   const [loading,setLoading] = useState(false)
 
-  const id = useId();
   let num = 0;
 
   const getUser = async () => {
@@ -44,7 +42,9 @@ function YourBookings() {
     if (m2 > m) {
       //For two month query
       for (let i = s; i <= "31"; i++) {
-        const slot = await appwriteService2.getSlots(name, i + m);
+        let i2 = "0"+i
+        let i3 = i2.slice(-2)
+        const slot = await appwriteService2.getSlots(name, i3 + m);
         const userId = slot.documents[0].$id;
         await appwriteService2.updateSlots(
           userId,
@@ -56,7 +56,6 @@ function YourBookings() {
         let i2 = "0" + i;
         let i3 = i2.slice(-2);
         const slot = await appwriteService2.getSlots(name, i3 + m2);
-        console.log(i3 + m2);
         const userId = slot.documents[0].$id;
         await appwriteService2.updateSlots(
           userId,
@@ -65,17 +64,17 @@ function YourBookings() {
       }
     } else {
       for (let i = s; i <= e; i++) {
-        const slot = await appwriteService2.getSlots(name, i + m);
+        let i2 = "0"+i
+        let i3 = i2.slice(-2)
+        const slot = await appwriteService2.getSlots(name, i3 + m);
         const userId = slot.documents[0].$id;
         await appwriteService2.updateSlots(
           userId,
           slot.documents[0].slots + guests
         );
       }
-    }
-    
+    }  
     getUser()
-
   };
 
 
@@ -85,16 +84,17 @@ function YourBookings() {
 
   if (bookings.length == 0 || loading==true) {
     return (
-      <div className="w-full min-h-[80vh] py-8">
+      <div className="w-full h-[120vh] fixed top-0">
+        <Loadinglg />
         <Loadinglg />
       </div>
     );
   }
 
   return (
-    <div className="min-h-[90vh]">
+    <div className="min-h-[90vh] w-full">
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table bg-gray-100 dark:bg-gray-800 text-gray-400 rounded-none">
           {/* head */}
           <thead>
             <tr>
@@ -108,17 +108,14 @@ function YourBookings() {
           </thead>
           <tbody>
             {bookings.map((t) => {
-              {
-                console.log(t.$id);
-              }
+  
 
               {
                 num = num + 1;
               }
               return (
-                <tr className="hover">
+                <tr className="hover" key={num}>
                   <Table
-                    key={id}
                     docId={t.$id}
                     num={num}
                     name={t.name}
