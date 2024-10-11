@@ -89,7 +89,7 @@ function CheckAvailability() {
         className="flex-col justify-center content-center h-[90vh] bg-gray-100 dark:bg-gray-800"
       >
         <div className="text-center text-1xl md:text-3xl italic text-black dark:text-white">{msg}</div>
-        <div className="text-center text-1xl md:text-3xl text-black dark:text-white">⚠️ Available for Rourkela, Bhubaneswar & Puri upto 3rd August</div>
+        <div className="text-center text-1xl md:text-3xl text-black dark:text-white">⚠️ Available for Rourkela & Bhubaneswar upto 31st October</div>
 
         <Select
           options={[
