@@ -1,10 +1,10 @@
 # 🏨 HotelBooking
 
-A robust and modern hotel booking application built with [your tech stack here, e.g., Node.js, React, MongoDB]. This project allows users to browse hotels, view details, make reservations, and manage their bookings easily and securely.
+A robust and modern hotel booking application built with **React** on the frontend and **Appwrite** for backend services. This project allows users to browse hotels, view details, make reservations, and manage their bookings easily and securely.
 
 ## ✨ Features
 
-- 🔐 **User Authentication:** Secure sign-up, login, and session management.
+- 🔐 **User Authentication:** Secure sign-up, login, and session management using Appwrite.
 - 🏠 **Hotel Listings:** Browse hotels with rich details, images, and amenities.
 - 🔎 **Search & Filter:** Search hotels by location, date, price, and rating.
 - 📆 **Booking System:** Reserve rooms, view booking history, and cancel reservations.
@@ -13,19 +13,18 @@ A robust and modern hotel booking application built with [your tech stack here, 
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** [React, Redux, Tailwind CSS, etc.]
-- **Backend:** [Node.js, Express.js, etc.]
-- **Database:** [MongoDB, PostgreSQL, etc.]
-- **Authentication:** [JWT, OAuth, etc.]
-- **Deployment:** [Docker, AWS, Heroku, etc.]
+- **Frontend:** React, [Redux, Tailwind CSS, etc. if applicable]
+- **Backend:** Appwrite (authentication, database, storage)
+- **Package Manager:** npm
+- **Deployment:** [Vercel, Netlify, Docker, etc. if applicable]
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-- [MongoDB](https://www.mongodb.com/) or your chosen database
+- [npm](https://www.npmjs.com/)
+- [Appwrite](https://appwrite.io/) project & endpoint
 
 ### Installation
 
@@ -35,13 +34,13 @@ A robust and modern hotel booking application built with [your tech stack here, 
     cd HotelBooking
     ```
 
-2. **Install dependencies**
+2. **Install dependencies using npm**
     ```bash
     npm install
     ```
 
 3. **Configure environment variables**
-    - Copy `.env.example` to `.env` and provide necessary values.
+    - Copy `.env.example` to `.env` and provide your Appwrite project credentials.
 
 4. **Run the application**
     ```bash
@@ -57,7 +56,7 @@ A robust and modern hotel booking application built with [your tech stack here, 
 
 ## 📚 API Documentation
 
-API endpoints and usage details can be found in [`docs/API.md`](docs/API.md) (if available).
+Appwrite endpoint usage and details can be found in [`docs/API.md`](docs/API.md) (if available).
 
 ## 🤝 Contributing
 
